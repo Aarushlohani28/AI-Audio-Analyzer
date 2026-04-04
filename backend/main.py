@@ -114,9 +114,12 @@ def process_audio_full_track(file_path):
     batch_features = np.array(chunks)
     batch_features = batch_features[..., np.newaxis]
     return batch_features
-
+@app.get("/ping")
+def ping_server():
+    return {"status": "The Render server is wide awake!"}
 @app.post("/predict/")
 def predict_genre(file: UploadFile = File(...)):
+    print(f"🚨 FRONT DOOR BREACHED: Received file {file.filename}!")
     if model is None:
         return {"error": "Model not loaded on the server."}
 
