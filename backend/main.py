@@ -15,9 +15,20 @@ from fastapi.middleware.cors import CORSMiddleware
 
 # Suppress annoying TensorFlow warnings
 app = FastAPI()
+
+# ... (app = FastAPI() should be right above this)
+
+# 1. Explicitly list the exact URLs that are allowed to talk to this server
+origins = [
+    "http://localhost:5173",  # Your local Vite development server
+    "http://localhost:3000",  # Just in case you use standard React
+    "https://ai-audio-analyzer-dusky.vercel.app"  # Your live Vercel frontend!
+]
+
+# 2. Apply the VIP list to the middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], # We will lock this down to your specific Vercel URL later
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

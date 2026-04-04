@@ -11,3 +11,5 @@ backend/temp_uploads/
 
 # Node modules
 frontend/node_modules/
+
+backend/data.json

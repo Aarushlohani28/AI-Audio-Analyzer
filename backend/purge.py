@@ -67,4 +67,26 @@ def run_purge():
                 continue
 
     # 3. Trigger Feature Extraction
-    pr
+    print("\n⚙️ Running feature extraction (preprocess.py)... This may take a while.")
+    try:
+        subprocess.run(["python", "preprocess.py"], check=True)
+    except subprocess.CalledProcessError:
+        print("❌ Feature extraction failed! Aborting purge.")
+        return
+
+    # 4. Trigger Model Training
+    print("\n🧠 Training the new Neural Network (train.py)...")
+    try:
+        subprocess.run(["python", "train.py"], check=True)
+    except subprocess.CalledProcessError:
+        print("❌ Model training failed! Aborting purge.")
+        return
+
+    # 5. Empty the Database
+    print("\n🧹 Emptying the MongoDB Queue...")
+    queue.delete_many({})
+    
+    print("\n✨ Purge Complete! The AI is smarter, and your cloud storage is empty!")
+
+if __name__ == "__main__":
+    run_purge()
