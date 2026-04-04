@@ -53,7 +53,7 @@ function App() {
     formData.append("true_genre", trueGenre);
 
     try {
-      const response = await fetch("https://ai-audio-analyzer-lo7n.onrender.com/submit-feedback/", {
+      const response = await fetch("https://ai-audio-analyzer-lo7n.onrender.com", {
         method: "POST",
         body: formData,
       });
