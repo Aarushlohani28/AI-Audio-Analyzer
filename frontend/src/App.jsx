@@ -24,7 +24,7 @@ function App() {
     formData.append("file", file);
 
     try {
-      const response = await fetch("https://ai-audio-analyzer-lo7n.onrender.com", {
+      const response = await fetch("https://ai-audio-analyzer-lo7n.onrender.com/predict/", {
         method: "POST",
         body: formData,
       });
@@ -53,7 +53,7 @@ function App() {
     formData.append("true_genre", trueGenre);
 
     try {
-      const response = await fetch("https://ai-audio-analyzer-lo7n.onrender.com", {
+      const response = await fetch("https://ai-audio-analyzer-lo7n.onrender.com/submit-feedback/", {
         method: "POST",
         body: formData,
       });
