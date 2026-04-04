@@ -129,7 +129,7 @@ def predict_genre(file: UploadFile = File(...)):
 
     # Save the file temporarily
     with open(temp_file_path, "wb") as buffer:
-        buffer.write(file.read())
+        buffer.write(file.file.read())
 
     try:
         features = process_audio_full_track(temp_file_path)
