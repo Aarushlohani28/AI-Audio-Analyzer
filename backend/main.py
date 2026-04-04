@@ -116,7 +116,7 @@ def process_audio_full_track(file_path):
     return batch_features
 
 @app.post("/predict/")
-async def predict_genre(file: UploadFile = File(...)):
+def predict_genre(file: UploadFile = File(...)):
     if model is None:
         return {"error": "Model not loaded on the server."}
 
@@ -126,7 +126,7 @@ async def predict_genre(file: UploadFile = File(...)):
 
     # Save the file temporarily
     with open(temp_file_path, "wb") as buffer:
-        buffer.write(await file.read())
+        buffer.write(file.read())
 
     try:
         features = process_audio_full_track(temp_file_path)
@@ -186,7 +186,7 @@ def process_upload_and_log(file_id: str, clean_genre: str, temp_file_path: str):
 
 # --- THE USER-FACING ENDPOINT (Lightning fast) ---
 @app.post("/submit-feedback/")
-async def submit_feedback(
+def submit_feedback(
     background_tasks: BackgroundTasks, # <-- Inject the background task manager
     file_id: str = Form(...), 
     true_genre: str = Form(...)
