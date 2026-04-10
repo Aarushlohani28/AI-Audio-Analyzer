@@ -137,7 +137,7 @@ function App() {
       {/* Footer Signature */}
       <footer className="footer-signature">
         <p>
-          Built and Maintianed by{" "}
+          Built and Maintained by{" "}
           <a 
             href="https://in.linkedin.com/in/aarush-lohani-691305261" 
             target="_blank" 
